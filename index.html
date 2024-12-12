@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Żappka TOTP Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.1/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h1 class="text-xl md:text-2xl font-bold mb-4 text-center">Żappka TOTP Generator</h1>
+
+        <form id="manual-input-form" class="hidden mb-6">
+            <label for="manual-input-secret" class="block text-base md:text-lg mb-2">Enter your secret:</label>
+            <input id="manual-input-secret" type="text" class="w-full border rounded-md p-2" 
+                   placeholder="Paste secrets from Python script" required>
+        </form>
+
+        <div id="totp-section" class="hidden space-y-4">
+            <div>
+                <h2 class="text-base md:text-lg font-medium mb-2">QR Code</h2>
+                <canvas id="qrcode-canvas" class="mx-auto max-w-full"></canvas>
+            </div>
+            <div>
+                <h2 class="text-base md:text-lg font-medium mb-2">TOTP Code</h2>
+                <div id="totp-code" class="text-2xl md:text-3xl font-bold p-3 border rounded-md bg-gray-50 text-center break-all"></div>
+            </div>
+            <div>
+                <h2 class="text-base md:text-lg font-medium mb-2">QR Code Content</h2>
+                <code id="qrcode-url" class="block text-sm bg-gray-50 p-2 rounded-md break-all"></code>
+            </div>
+        </div>
+        
+        <div class="mt-6">
+            <a href="https://raw.githubusercontent.com/iGerman00/zabka-totp-webapp/refs/heads/main/login-for-secrets.py" class="text-blue-500 hover:underline text-sm md:text-base">Get the script for obtaining secrets →</a>
+        </div>
+    </div>
+
+    <footer class="mt-6 md:mt-8 mx-auto max-w-prose px-4">
+        <div class="space-y-4 text-sm md:text-base text-gray-600">
+            <h2 class="font-medium text-base md:text-lg text-gray-800">Why this page exists</h2>
+            <p>The official Żappka mobile app includes nearly <b>50 tracking requests</b> just on startup. This simple alternative generates your TOTP code without any tracking or privacy concerns.</p>
+            <p>Since a recent update disabled the static widget functionality, this page provides a convenient alternative that even works offline.</p>
+            
+            <h2 class="font-medium text-base md:text-lg text-gray-800 pt-2">Technical details</h2>
+            <ul class="space-y-2 text-xs md:text-sm">
+                <li>• Your secrets are stored locally using the Web Storage API</li>
+                <li>• You can use <code class="bg-gray-100 px-1">?secrets=&lt;URL_ENCODED_SECRETS&gt;</code> in the URL to pre-populate secrets</li>
+                <li>• This page is not affiliated with Żappka</li>
+                <li>• TOTP implementation based on <a class="text-blue-500 hover:underline" href="https://github.com/TehFridge/Zappka3DS">TehFridge's Zappka3DS</a></li>
+                <li>• Source code available on <a class="text-blue-500 hover:underline" href="https://github.com/iGerman00/zabka-totp-webapp">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
