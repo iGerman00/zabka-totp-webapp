@@ -1,7 +1,12 @@
 # Żappka bez klopot
 
-Use the QR code without visiting the bloated store app  
+Use the QR code without visiting the bloated store app, from your browser  
 [Click here to access the web app →](https://zaba.igerman.cc)
+
+<!-- ![demo](https://github.com/user-attachments/assets/69fefd04-1d1e-41cd-a329-58f80fd41ac4) -->
+<div style="text-align:center">
+<img src="https://github.com/user-attachments/assets/69fefd04-1d1e-41cd-a329-58f80fd41ac4" width="300">
+</div>
 
 ## Usage
 1. Clone the repository:
