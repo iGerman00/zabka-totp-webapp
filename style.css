@@ -1,0 +1,22 @@
+* {
+    transition: all 0.3s;
+}
+
+@property --angle {
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes border-rotate {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+#qrcode-canvas {
+    border: 4px solid;
+    border-image-slice: 1;
+}

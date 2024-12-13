@@ -3,6 +3,8 @@ const totpCodeElement = document.getElementById("totp-code");
 const qrCodeUrlElement = document.getElementById("qrcode-url");
 const totpSection = document.getElementById("totp-section");
 const qrCodeCanvas = document.getElementById("qrcode-canvas");
+const clearSecretsButton = document.getElementById("clear-secrets");
+const secretsHint = document.getElementById("secrets-hint");
 
 const manualInputForm = document.getElementById("manual-input-form");
 const manualInputSecret = document.getElementById("manual-input-secret");
@@ -34,7 +36,7 @@ async function sha1hmac(secret, message) {
 
     // No need to encode message, it's already a Uint8Array (time step)
     const signature = await crypto.subtle.sign('HMAC', key, message);
-    
+
     return new Uint8Array(signature);
 }
 
@@ -78,23 +80,46 @@ function clearSecrets() {
     localStorage.removeItem("secrets");
 }
 
+function updateBorder(timeInPeriod) {
+    const canvas = document.getElementById('qrcode-canvas');
+    const progress = timeInPeriod / 30; // 0 to 1
+
+    let color;
+    if (progress < 0.5) {
+        color = '#10B981';
+    } else if (progress < 0.85) {
+        color = '#F59E0B';
+    } else {
+        color = '#EF4444';
+    }
+
+    const angle = progress * 360;
+    canvas.style.borderImage = `conic-gradient(${color} ${angle}deg, transparent ${angle}deg) 1`;
+}
+
 async function updateTOTPDisplay(secret, ployId) {
     const now = Math.floor(Date.now() / 1000);
+    const timeInPeriod = now % 30;
     const url = await generateQRCodeURL(secret, ployId, now);
+
     totpCodeElement.textContent = url.split("loyal=")[1];
 
-    // Sanitize and display the QR code URL
     const sanitizedUrl = DOMPurify.sanitize(url);
     qrCodeUrlElement.textContent = sanitizedUrl;
     qrCodeUrlElement.href = sanitizedUrl;
 
-    // Generate QR code using qrious
+    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
     new QRious({
         element: qrCodeCanvas,
         value: sanitizedUrl,
-        size: 250,
-        level: 'Q'
+        size: 500,
+        level: 'Q',
+        background: 'transparent',
+        foreground: prefersDarkMode ? 'white' : 'black',
     });
+
+    updateBorder(timeInPeriod);
 }
 
 // -- Initialization --
@@ -107,6 +132,7 @@ if (secretsParam) {
         const decodedSecrets = JSON.parse(decodeURIComponent(secretsParam));
         storeSecrets(decodedSecrets);
         totpSection.classList.remove("hidden");
+        secretsHint.classList.add("hidden");
         updateTOTPDisplay(decodedSecrets.secret, decodedSecrets.ployId);
         setInterval(() => updateTOTPDisplay(decodedSecrets.secret, decodedSecrets.ployId), 1000);
     } catch (error) {
@@ -120,7 +146,6 @@ if (secretsParam) {
         updateTOTPDisplay(storedSecrets.secret, storedSecrets.ployId);
         setInterval(() => updateTOTPDisplay(storedSecrets.secret, storedSecrets.ployId), 1000);
     } else {
-        // No secrets found - show manual input form
         manualInputForm.classList.remove("hidden");
         manualInputForm.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -139,3 +164,8 @@ if (secretsParam) {
         });
     }
 }
+
+clearSecretsButton.addEventListener("click", () => {
+    clearSecrets();
+    location.reload();
+});
