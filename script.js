@@ -139,11 +139,13 @@ async function updateTOTPDisplay(secret, ployId) {
 const urlParams = new URLSearchParams(window.location.search);
 const secretsParam = urlParams.get("secrets");
 const alternateDesignParam = urlParams.get("alternate");
+const alternateDesign = localStorage.getItem("alternateDesign");
 
 // 1000-9999 random number
 document.getElementById("fake-zappsy").innerText = Math.floor(Math.random() * 9000) + 1000 + ' żappsów';
 
-if (alternateDesignParam !== null) {
+if (alternateDesignParam !== null || alternateDesign === "true") {
+    localStorage.setItem("alternateDesign", true);
     document.getElementById("alternate-design-overlay").classList.remove("hidden");
     document.getElementById("main-container").classList.toggle("hidden");
 }
@@ -192,11 +194,13 @@ clearSecretsButton.addEventListener("click", () => {
 });
 
 alternateDesignButton.addEventListener("click", () => {
-    document.getElementById("alternate-design-overlay").classList.toggle("hidden");
-    document.getElementById("main-container").classList.toggle("hidden");
+    localStorage.setItem("alternateDesign", true);
+    document.getElementById("alternate-design-overlay").classList.remove("hidden");
+    document.getElementById("main-container").classList.add("hidden");
 });
 
 closeAlternateDesignButton.addEventListener("click", () => {
-    document.getElementById("alternate-design-overlay").classList.toggle("hidden");
-    document.getElementById("main-container").classList.toggle("hidden");
+    localStorage.setItem("alternateDesign", false);
+    document.getElementById("alternate-design-overlay").classList.add("hidden");
+    document.getElementById("main-container").classList.remove("hidden");
 });
