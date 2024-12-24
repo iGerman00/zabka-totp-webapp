@@ -66,11 +66,13 @@
 
     <div class="relative w-full h-full top-0 left-0 hidden" id="alternate-design-overlay">
         <div id="alternate-design-container">
-            <img src="img/alternate.webp" alt="Alternate design">
-            <canvas id="qrcode-canvas-alt" class="absolute top-0 left-0"></canvas>
-            <button id="close-alternate-design" title="Close button"></button>
-            <p id="fake-zappsy"></p>
-            <img src="img/coin.webp" id="coin" alt="Logo coin">
+            <div id="offset" class="absolute" style="transform: translate(0px, -6.5%)">
+                <img src="img/alternate.webp" alt="Alternate design">
+                <canvas id="qrcode-canvas-alt" class="absolute"></canvas>
+                <button id="close-alternate-design" title="Close button"></button>
+                <p id="fake-zappsy"></p>
+                <img src="img/coin.webp" id="coin" alt="Logo coin">
+            </div>
         </div>
     </div>
 
