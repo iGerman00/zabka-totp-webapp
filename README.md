@@ -42,6 +42,7 @@ Since a recent update also disabled the static widget functionality, this page p
 ## Technical details
 * Your secrets are stored locally using the Web Storage API
 * You can use `?secrets=<URL_ENCODED_SECRETS>` in the URL to pre-populate secrets
+* You can use `?alternate` in the URL to use the alternate design
 * This page is not affiliated with Żappka
 * TOTP implementation based on [TehFridge's Zappka3DS](https://github.com/TehFridge/Zappka3DS)
 

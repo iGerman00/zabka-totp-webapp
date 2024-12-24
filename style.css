@@ -20,3 +20,49 @@
     border: 4px solid;
     border-image-slice: 1;
 }
+
+#alternate-design-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #1c1c1c, black);
+
+    canvas {
+        width: 50%;
+        position: absolute;
+        top: 38.3%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 5px;
+    }
+
+    #close-alternate-design {
+        position: absolute;
+        top: 8%;
+        right: 0;
+        cursor: pointer;
+        width: 15vw;
+        height: 15vw;
+    }
+
+    #fake-zappsy {
+        position: absolute;
+        top: 75.5%;
+        left: 16%;
+        color: #1cba5b;
+        font-size: 0.6rem;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    #coin {
+        width: 15%;
+        position: absolute;
+        top: 38.3%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1vw solid white;
+    }
+}

@@ -3,7 +3,10 @@ const totpCodeElement = document.getElementById("totp-code");
 const qrCodeUrlElement = document.getElementById("qrcode-url");
 const totpSection = document.getElementById("totp-section");
 const qrCodeCanvas = document.getElementById("qrcode-canvas");
+const qrCodeCanvasAlt = document.getElementById("qrcode-canvas-alt");
 const clearSecretsButton = document.getElementById("clear-secrets");
+const alternateDesignButton = document.getElementById("alternate-design");
+const closeAlternateDesignButton = document.getElementById("close-alternate-design");
 const secretsHint = document.getElementById("secrets-hint");
 
 const manualInputForm = document.getElementById("manual-input-form");
@@ -119,6 +122,15 @@ async function updateTOTPDisplay(secret, ployId) {
         foreground: prefersDarkMode ? 'white' : 'black',
     });
 
+    new QRious({
+        element: qrCodeCanvasAlt,
+        value: sanitizedUrl,
+        size: 500,
+        level: 'Q',
+        background: 'white',
+        foreground: 'black',
+    });
+
     updateBorder(timeInPeriod);
 }
 
@@ -126,6 +138,15 @@ async function updateTOTPDisplay(secret, ployId) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const secretsParam = urlParams.get("secrets");
+const alternateDesignParam = urlParams.get("alternate");
+
+// 1000-9999 random number
+document.getElementById("fake-zappsy").innerText = Math.floor(Math.random() * 9000) + 1000 + ' żappsów';
+
+if (alternateDesignParam !== null) {
+    document.getElementById("alternate-design-overlay").classList.remove("hidden");
+    document.getElementById("main-container").classList.toggle("hidden");
+}
 
 if (secretsParam) {
     try {
@@ -168,4 +189,14 @@ if (secretsParam) {
 clearSecretsButton.addEventListener("click", () => {
     clearSecrets();
     location.reload();
+});
+
+alternateDesignButton.addEventListener("click", () => {
+    document.getElementById("alternate-design-overlay").classList.toggle("hidden");
+    document.getElementById("main-container").classList.toggle("hidden");
+});
+
+closeAlternateDesignButton.addEventListener("click", () => {
+    document.getElementById("alternate-design-overlay").classList.toggle("hidden");
+    document.getElementById("main-container").classList.toggle("hidden");
 });
