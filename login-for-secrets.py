@@ -87,10 +87,10 @@ def send_verification_code(id_token, phone_number):
     headers = {
         "Content-Type": "application/json",
         "Authorization": id_token,
-        "User-Agent": "SuperApp/140 CFNetwork/1568.300.101 Darwin/24.2.0",
+        "User-Agent": "SuperApp/999 CFNetwork/1568.300.101 Darwin/24.2.0",
         "X-Client-Key": "l6u0R9biQcbEvZy5UybJxw",
         "apollographql-client-name": "pl.zabka.apb2c-apollo-ios",
-        "apollographql-client-version": "4.2.0-140",
+        "apollographql-client-version": "4.2.0-999",
         "X-APOLLO-OPERATION-NAME": "SendCode",
         "X-APOLLO-OPERATION-TYPE": "mutation"
     }
@@ -117,10 +117,10 @@ def sign_in_with_phone(id_token, phone_number, verification_code):
     headers = {
         "Content-Type": "application/json",
         "Authorization": id_token,
-        "User-Agent": "SuperApp/140 CFNetwork/1568.300.101 Darwin/24.2.0",
+        "User-Agent": "SuperApp/999 CFNetwork/1568.300.101 Darwin/24.2.0",
         "X-Client-Key": "l6u0R9biQcbEvZy5UybJxw",
         "apollographql-client-name": "pl.zabka.apb2c-apollo-ios",
-        "apollographql-client-version": "4.2.0-140",
+        "apollographql-client-version": "4.2.0-999",
         "X-APOLLO-OPERATION-NAME": "SignIn",
         "X-APOLLO-OPERATION-TYPE": "mutation"
     }
@@ -155,11 +155,11 @@ def get_qr_code(bearer_token):
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {bearer_token}",
-        "User-Agent": "Zappka/140 (iOS; iPhone 15; 00000000-0000-4000-A000-000000000000) iOS/18.2",
+        "User-Agent": "Zappka/999 (iOS; iPhone 15; 00000000-0000-4000-A000-000000000000) iOS/18.2",
         "X-APOLLO-OPERATION-NAME": "QRCode",
         "X-APOLLO-OPERATION-TYPE": "query",
         "apollographql-client-name": "pl.zabka.apb2c-apollo-ios",
-        "apollographql-client-version": "4.2.0-140"
+        "apollographql-client-version": "4.2.0-999"
     }
     response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
