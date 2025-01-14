@@ -3,10 +3,9 @@
 Use the QR code without visiting the bloated store app, from your browser  
 [Click here to access the web app →](https://zaba.igerman.cc)
 
-<!-- ![demo](https://github.com/user-attachments/assets/69fefd04-1d1e-41cd-a329-58f80fd41ac4) -->
-<div style="text-align:center">
-<img src="https://github.com/user-attachments/assets/69fefd04-1d1e-41cd-a329-58f80fd41ac4" width="300">
-</div>
+| <img src="https://github.com/user-attachments/assets/69fefd04-1d1e-41cd-a329-58f80fd41ac4" width="300" alt="Normal UI"> | <img src="https://github.com/user-attachments/assets/d3f29fbc-44ed-43ea-8409-f79f1fdb16d3" width="300" alt="Alternate"> |
+|:--:|:--:|
+| Normal UI | Alternate |
 
 ## Usage
 1. Clone the repository:
