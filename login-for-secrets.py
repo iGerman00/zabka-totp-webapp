@@ -138,7 +138,11 @@ def verify_custom_token(custom_token):
         "returnSecureToken": True
     }
     headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "User-Agent": f"FirebaseAuth.iOS/10.26.0 {IOS_BUNDLE_IDENTIFIER}/4.2.0 iPhone/18.2 hw/iPhone16_1",
+        "X-Client-Version": f"{CLIENT_VERSION}/FirebaseCore-iOS",
+        "X-Ios-Bundle-Identifier": IOS_BUNDLE_IDENTIFIER,
+        "X-Firebase-GMPID": GMPID
     }
     response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
