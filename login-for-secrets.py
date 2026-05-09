@@ -87,12 +87,14 @@ def send_verification_code(id_token, phone_number):
     headers = {
         "Content-Type": "application/json",
         "Authorization": id_token,
-        "User-Agent": "SuperApp/999 CFNetwork/1568.300.101 Darwin/24.2.0",
+        "User-Agent": "SuperApp/99999 CFNetwork/3860.500.112 Darwin/25.4.0",
         "X-Client-Key": "l6u0R9biQcbEvZy5UybJxw",
         "apollographql-client-name": "pl.zabka.apb2c-apollo-ios",
-        "apollographql-client-version": "4.2.0-999",
+        "apollographql-client-version": "5.35.1+99999",
         "X-APOLLO-OPERATION-NAME": "SendCode",
-        "X-APOLLO-OPERATION-TYPE": "mutation"
+        "X-APOLLO-OPERATION-TYPE": "mutation",
+        "Accept": "multipart/mixed;deferSpec=20220824,application/graphql-response+json,application/json",
+        "If-None-Match": "<null>"
     }
     response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
@@ -117,12 +119,14 @@ def sign_in_with_phone(id_token, phone_number, verification_code):
     headers = {
         "Content-Type": "application/json",
         "Authorization": id_token,
-        "User-Agent": "SuperApp/999 CFNetwork/1568.300.101 Darwin/24.2.0",
+        "User-Agent": "SuperApp/99999 CFNetwork/3860.500.112 Darwin/25.4.0",
         "X-Client-Key": "l6u0R9biQcbEvZy5UybJxw",
         "apollographql-client-name": "pl.zabka.apb2c-apollo-ios",
-        "apollographql-client-version": "4.2.0-999",
+        "apollographql-client-version": "5.35.1+99999",
         "X-APOLLO-OPERATION-NAME": "SignIn",
-        "X-APOLLO-OPERATION-TYPE": "mutation"
+        "X-APOLLO-OPERATION-TYPE": "mutation",
+        "Accept": "multipart/mixed;deferSpec=20220824,application/graphql-response+json,application/json",
+        "If-None-Match": "<null>"
     }
     response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
@@ -158,12 +162,13 @@ def get_qr_code(bearer_token):
     }
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {bearer_token}",
-        "User-Agent": "Zappka/999 (iOS; iPhone 15; 00000000-0000-4000-A000-000000000000) iOS/18.2",
+        "Authorization": bearer_token,
+        "User-Agent": "SuperApp/99999 CFNetwork/3860.500.112 Darwin/25.4.0",
         "X-APOLLO-OPERATION-NAME": "QRCode",
         "X-APOLLO-OPERATION-TYPE": "query",
         "apollographql-client-name": "pl.zabka.apb2c-apollo-ios",
-        "apollographql-client-version": "4.2.0-999"
+        "apollographql-client-version": "5.35.1+99999",
+        "If-None-Match": "<null>"
     }
     response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
